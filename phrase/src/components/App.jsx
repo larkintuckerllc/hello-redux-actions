@@ -1,28 +1,31 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import * as fromCounter from '../ducks/counter';
+import * as fromPhrase from '../ducks/phrase';
 
-function App({ counter, decrementCounter, incrementCounter }) {
+function App({ clearPhrase, phrase, setPhrase }) {
   return (
     <div>
-      <div>{counter.toString()}</div>
-      <button onClick={decrementCounter}>-</button>
-      <button onClick={incrementCounter}>+</button>
+      <div>{phrase !== null ? phrase : 'NO PHRASE'}</div>
+      <button onClick={() => setPhrase('A sample phrase.')}>Set</button>
+      <button onClick={() => clearPhrase()}>Clear</button>
     </div>
   );
 }
 App.propTypes = {
-  counter: PropTypes.number.isRequired,
-  decrementCounter: PropTypes.func.isRequired,
-  incrementCounter: PropTypes.func.isRequired,
+  clearPhrase: PropTypes.func.isRequired,
+  phrase: PropTypes.string,
+  setPhrase: PropTypes.func.isRequired,
+};
+App.defaultProps = {
+  phrase: null,
 };
 export default connect(
   state => ({
-    counter: fromCounter.getCounter(state),
+    phrase: fromPhrase.getPhrase(state),
   }),
   {
-    decrementCounter: fromCounter.decrementCounter,
-    incrementCounter: fromCounter.incrementCounter,
+    clearPhrase: fromPhrase.clearPhrase,
+    setPhrase: fromPhrase.setPhrase,
   },
 )(App);
