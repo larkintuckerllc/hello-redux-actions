@@ -13,7 +13,7 @@ function App({
     <div>
       <div><b>PHRASE:</b> {phrase !== null ? phrase : 'NO PHRASE'}</div>
       <div><b>ERROR:</b> {phraseError !== null ? phraseError : 'NO ERROR'}</div>
-      <button onClick={() => setPhrase('A sample phrase.')}>Set Phrase</button>
+      <button onClick={() => setPhrase('A sample phrase.')}>Set</button>
       <button onClick={() => setPhrase(new Error('A sample error.'))}>Set Error</button>
       <button onClick={() => clearPhrase()}>Clear</button>
     </div>
