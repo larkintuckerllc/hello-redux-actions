@@ -10,7 +10,7 @@
     "react-scripts": "1.1.0",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
-    "redux-promise": "^0.5.3"
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import promiseMiddleware from 'redux-promise';
+import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 
 const middlewares = [
-  promiseMiddleware,
+  ReduxThunk,
 ];
 export default () => createStore(
   reducers,
