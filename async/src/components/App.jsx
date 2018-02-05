@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as fromPhrase from '../ducks/phrase';
 
 function App({
+  clearPhrase,
   fetchPhrase,
   phrase,
   phraseError,
@@ -20,10 +21,17 @@ function App({
       >
         Fetch
       </button>
+      <button
+        disabled={phraseRequested}
+        onClick={() => clearPhrase()}
+      >
+        Clear
+      </button>
     </div>
   );
 }
 App.propTypes = {
+  clearPhrase: PropTypes.func.isRequired,
   fetchPhrase: PropTypes.func.isRequired,
   phrase: PropTypes.string,
   phraseError: PropTypes.string,
@@ -40,6 +48,7 @@ export default connect(
     phraseRequested: fromPhrase.getPhraseRequested(state),
   }),
   {
+    clearPhrase: fromPhrase.clearPhrase,
     fetchPhrase: fromPhrase.fetchPhrase,
   },
 )(App);

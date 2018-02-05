@@ -5,6 +5,7 @@ import * as fromAPI from '../apis/phrase';
 // ACTION CREATORS
 const fetchPhraseRequest = createAction('PHRASE_FETCH_REQUEST');
 const fetchPhraseResponse = createAction('PHRASE_FETCH_RESPONSE');
+export const clearPhrase = createAction('PHRASE_CLEAR');
 export const fetchPhrase = () => (dispatch) => {
   dispatch(fetchPhraseRequest());
   fromAPI.getPhrase()
@@ -30,6 +31,9 @@ const value = handleActions({
       return payload;
     },
   },
+  [clearPhrase]() {
+    return null;
+  },
 }, null);
 const error = handleActions({
   [fetchPhraseResponse]: {
@@ -39,6 +43,9 @@ const error = handleActions({
     throw(state, { payload: { message } }) {
       return message;
     },
+  },
+  [clearPhrase]() {
+    return null;
   },
 }, null);
 export default combineReducers({
